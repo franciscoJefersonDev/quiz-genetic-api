@@ -73,10 +73,6 @@ app.post('/new-question', function (request, response) { return __awaiter(void 0
         }
     });
 }); });
-/*
-  === GET QUESTIONS
-  :/difficulty
-*/
 app.get('/get-questions', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
     var questions, error_2;
     return __generator(this, function (_a) {
@@ -86,6 +82,8 @@ app.get('/get-questions', function (request, response) { return __awaiter(void 0
                 return [4 /*yield*/, get_all_questions()];
             case 1:
                 questions = _a.sent();
+                if (!questions || questions.length < 1)
+                    return [2 /*return*/, response.status(400).json({ error: "Not possibilty get this questions", msg: "Unexpected error!" })];
                 return [2 /*return*/, response.status(200).json({ data: questions, msg: "Created questions with success." })];
             case 2:
                 error_2 = _a.sent();
@@ -129,7 +127,6 @@ var add_new_question = function (question, items, correct) { return __awaiter(vo
                             b: items.b.toUpperCase(),
                             c: items.c.toUpperCase(),
                             d: items.d.toUpperCase(),
-                            type: 'question',
                             correct: correct.toUpperCase()
                         }
                     })];
@@ -147,11 +144,7 @@ var get_all_questions = function () { return __awaiter(void 0, void 0, void 0, f
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, prisma.questions.findMany({
-                        where: {
-                            type: 'question'
-                        }
-                    })];
+                return [4 /*yield*/, prisma.questions.findMany()];
             case 1: return [2 /*return*/, _a.sent()];
             case 2:
                 error_5 = _a.sent();
