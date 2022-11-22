@@ -25,16 +25,11 @@ app.post('/new-question', async(request, response) => {
   }
 })
 
-/*
-  === GET QUESTIONS
-  :/difficulty
-*/
-
 app.get('/get-questions', async(request, response) => {
   try {
     const questions: any = await get_all_questions()
-    return response.status(200).json({ data: questions,msg: "Created questions with success."})
     if(!questions || questions.length < 1) return response.status(400).json({ error: "Not possibilty get this questions", msg: "Unexpected error!"})
+    return response.status(200).json({ data: questions,msg: "Created questions with success."})
   } catch(error) {
     return response.status(400).json({ error: error, msg: "Unexpected error!"})
   }
@@ -63,7 +58,6 @@ const add_new_question = async (question: string, items: any, correct: string) =
         b: items.b.toUpperCase(),
         c: items.c.toUpperCase(),
         d: items.d.toUpperCase(),
-        type: 'question',
         correct: correct.toUpperCase(),
       },
     });
@@ -74,11 +68,7 @@ const add_new_question = async (question: string, items: any, correct: string) =
 
 const get_all_questions = async () => {
   try {
-    return await prisma.questions.findMany({
-      where: {
-        type: 'question'
-      }
-    });
+    return await prisma.questions.findMany();
   } catch (error) {
     return []
   }

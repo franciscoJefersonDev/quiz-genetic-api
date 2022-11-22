@@ -18,6 +18,5 @@ model Questions {
   b String
   c String
   d String
-  type String
   correct String
 }
