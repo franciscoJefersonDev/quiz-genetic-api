@@ -122,12 +122,12 @@ var add_new_question = function (question, items, correct) { return __awaiter(vo
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, prisma.questions.create({
                         data: {
-                            question: question.toUpperCase(),
-                            a: items.a.toUpperCase(),
-                            b: items.b.toUpperCase(),
-                            c: items.c.toUpperCase(),
-                            d: items.d.toUpperCase(),
-                            correct: correct.toUpperCase()
+                            question: question,
+                            a: items.a,
+                            b: items.b,
+                            c: items.c,
+                            d: items.d,
+                            correct: correct
                         }
                     })];
             case 1: return [2 /*return*/, _a.sent()];

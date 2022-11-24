@@ -53,12 +53,12 @@ const add_new_question = async (question: string, items: any, correct: string) =
   try {
     return await prisma.questions.create({
       data: {
-        question: question.toUpperCase(),
-        a: items.a.toUpperCase(),
-        b: items.b.toUpperCase(),
-        c: items.c.toUpperCase(),
-        d: items.d.toUpperCase(),
-        correct: correct.toUpperCase(),
+        question: question,
+        a: items.a,
+        b: items.b,
+        c: items.c,
+        d: items.d,
+        correct: correct,
       },
     });
   } catch(error) {
