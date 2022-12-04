@@ -1,4 +1,6 @@
 node_modules
 # Keep environment variables out of version control
 # Local Netlify folder
+
+# Local Netlify folder
 .netlify
